@@ -1,3 +1,17 @@
+/*
+#################################
+#File : AD9850 Constantly Increasing Phase Experiment.ino
+#
+#Author : James Fletcher
+#
+#Date : 22/6/2023
+#
+#Description : This is my attempt at writing low level interface code to an AD9850 Direct Digital Synthesiser. This version of the code tries to update the 
+#phase word of the AD9850 incrementally such that the output waveform will constantly increase in phase until 
+#################################
+*/
+
+
 #define W_CLK 2
 #define FQ_UD 3 
 #define DATA 4 
@@ -86,9 +100,11 @@ void setup(){
 
 void loop(){
   uint32_t frequency = 15000000*freq_Factor;
+  while(1){
   for(uint8_t phase = 0;phase<=360;phase++){
     delay(1);
     updateFreqAndPhase(frequency,phase);
+  }
   }
  /*
   uint32_t frequency = freq_Factor;
